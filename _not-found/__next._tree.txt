@@ -1,0 +1,4 @@
+:HL["/ana-lucia-pinto/_next/static/chunks/1t6yalk334fq6.css","style"]
+:HL["/ana-lucia-pinto/fontes/zodiak-300.woff2","font",{"crossOrigin":"anonymous","type":"font/woff2"}]
+:HL["/ana-lucia-pinto/fontes/supreme-400.woff2","font",{"crossOrigin":"anonymous","type":"font/woff2"}]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"hcZ-qxIzt2wTl24NIxPKK"}
