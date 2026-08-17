@@ -217,6 +217,48 @@ body.tem-escuro .conta{color:rgba(250,241,235,.6)}
    navegador, e as duas rolagens continuam funcionando. */
 html, body, .deck, .slide { touch-action: pan-x pan-y pinch-zoom; }
 
+/* ===========================================================================
+   A BARRA NÃO PASSA POR CIMA DO TEXTO.
+
+   Antes o slide ocupava a tela inteira e a barra ficava flutuando em cima,
+   segurada por um respiro no pé. Isso funciona em tamanho normal e quebra na
+   hora em que alguém aproxima com dois dedos: a barra continua do mesmo
+   tamanho na tela, mas o texto dobra, e a última linha some atrás dela. Foi o
+   que a Paloma viu, com "Trouxe ela para a home inteira" cortado ao meio.
+
+   Agora a área do slide TERMINA onde a barra começa. Não é respiro, é limite:
+   não existe zoom que faça o texto ocupar um lugar que ele não tem.
+   =========================================================================== */
+:root {
+  --barra: 66px;
+}
+@media (max-width: 640px) {
+  :root {
+    --barra: 58px;
+  }
+}
+
+.slide {
+  bottom: calc(var(--barra) + env(safe-area-inset-bottom, 0px));
+  padding-bottom: clamp(18px, 2.4vw, 30px);
+}
+@media (max-width: 640px) {
+  .slide {
+    padding-bottom: 18px;
+  }
+}
+
+.nav {
+  height: calc(var(--barra) + env(safe-area-inset-bottom, 0px));
+  padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+  background: var(--creme);
+  border-top: 1px solid rgba(25, 21, 18, 0.08);
+}
+body.tem-escuro .nav {
+  background: var(--tinta);
+  border-top-color: rgba(250, 241, 235, 0.1);
+}
+
 </style>
 <div class="deck" id="deck">
 
