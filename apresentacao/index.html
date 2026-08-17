@@ -210,6 +210,13 @@ body.tem-escuro .conta{color:rgba(250,241,235,.6)}
    os dois acabavam lado a lado, colados. */
 .endereco{display:block;width:fit-content}
 
+/* A PESSOA TEM QUE CONSEGUIR APROXIMAR COM DOIS DEDOS.
+   Declarado explicitamente: sem isso, qualquer ouvinte de toque que apareça no
+   caminho pode fazer o navegador entender que a página cuidou do gesto e
+   cancelar a aproximação. `pinch-zoom` deixa a pinça sempre por conta do
+   navegador, e as duas rolagens continuam funcionando. */
+html, body, .deck, .slide { touch-action: pan-x pan-y pinch-zoom; }
+
 </style>
 <div class="deck" id="deck">
 
@@ -484,7 +491,12 @@ body.tem-escuro .conta{color:rgba(250,241,235,.6)}
 
   var x0 = 0, y0 = 0, valendo = false;
   document.addEventListener('touchstart', function(e){
+    // dois dedos e pinca: nao vira troca de slide
+    if (e.touches.length > 1) { valendo = false; return; }
     x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; valendo = true;
+  }, {passive:true});
+  document.addEventListener('touchmove', function(e){
+    if (e.touches.length > 1) valendo = false;
   }, {passive:true});
   document.addEventListener('touchend', function(e){
     if (!valendo) return;
